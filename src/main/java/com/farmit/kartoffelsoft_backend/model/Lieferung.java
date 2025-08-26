@@ -26,12 +26,4 @@ public class Lieferung {
     private Lieferant lieferant;
 
     private double gesamterPreis;
-
-    public Lieferung(LocalDateTime datum, Lieferant lieferant, double gesamterPreis) {
-        this.datum = datum;
-        this.lieferant = lieferant;
-        this.gesamterPreis = gesamterPreis;
-    }
-
-
 }

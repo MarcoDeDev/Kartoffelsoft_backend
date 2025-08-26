@@ -33,13 +33,4 @@ public class Lieferant {
     private String ort;
     private String emailAdresse;
     private String telefon;
-
-    public Lieferant(String firmaName, String strasse, String plz, String ort, String emailAdresse, String telefon) {
-        this.firmaName = firmaName;
-        this.strasse = strasse;
-        this.plz = plz;
-        this.ort = ort;
-        this.emailAdresse = emailAdresse;
-        this.telefon = telefon;
-    }
 }

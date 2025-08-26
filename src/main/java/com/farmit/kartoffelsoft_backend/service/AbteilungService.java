@@ -14,4 +14,6 @@ public interface AbteilungService {
     List<Abteilung> getAllAbteilung();
 
     void deleteAbteilungById(long id);
+
+    Optional<Abteilung> findByAbteilungName(String name);
 }

@@ -29,12 +29,6 @@ public class Mitarbeiter {
     private String username;
     private String password;
 
-
-    public Mitarbeiter(String vorname, String nachname, Abteilung abteilung, String username, String password) {
-        this.vorname = vorname;
-        this.nachname = nachname;
-        this.abteilung = abteilung;
-        this.username = username;
-        this.password = password;
-    }
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }

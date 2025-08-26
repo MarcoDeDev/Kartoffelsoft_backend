@@ -26,17 +26,4 @@ public class GrossKunde {
     private String ort;
     private String emailAdresse;
     private String telefon;
-
-    public GrossKunde(String vorname, String nachname, String firmaName, String strasse, String plz, String ort, String emailAdresse, String telefon) {
-        this.vorname = vorname;
-        this.nachname = nachname;
-        this.firmaName = firmaName;
-        this.strasse = strasse;
-        this.plz = plz;
-        this.ort = ort;
-        this.emailAdresse = emailAdresse;
-        this.telefon = telefon;
-    }
-
-
 }

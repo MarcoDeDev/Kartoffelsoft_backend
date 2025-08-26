@@ -35,39 +35,4 @@ public class Bestellung {
     private boolean bezahlt;
     private String zahlungArt;
     private int rabat;
-
-    public Bestellung(GrossKunde grossKunde, LocalDateTime datum, double gesamterPreis, boolean bezahlt, String zahlungArt, int rabat) {
-        this.grossKunde = grossKunde;
-        this.datum = datum;
-        this.gesamterPreis = gesamterPreis;
-        this.bezahlt = bezahlt;
-        this.zahlungArt = zahlungArt;
-        this.rabat = rabat;
-    }
-
-    public Bestellung(GrossKunde grossKunde, LocalDateTime datum, double gesamterPreis, boolean bezahlt, String zahlungArt) {
-        this.grossKunde = grossKunde;
-        this.datum = datum;
-        this.gesamterPreis = gesamterPreis;
-        this.bezahlt = bezahlt;
-        this.zahlungArt = zahlungArt;
-    }
-
-    public Bestellung(LocalDateTime datum, double gesamterPreis, boolean bezahlt, String zahlungArt, int rabat) {
-        this.datum = datum;
-        this.gesamterPreis = gesamterPreis;
-        this.bezahlt = bezahlt;
-        this.zahlungArt = zahlungArt;
-        this.rabat = rabat;
-    }
-
-    public Bestellung(long id, LocalDateTime datum, double gesamterPreis, boolean bezahlt, String zahlungArt) {
-        this.id = id;
-        this.datum = datum;
-        this.gesamterPreis = gesamterPreis;
-        this.bezahlt = bezahlt;
-        this.zahlungArt = zahlungArt;
-    }
-
-
 }

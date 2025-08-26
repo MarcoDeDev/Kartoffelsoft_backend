@@ -28,11 +28,4 @@ public class TeilDerLieferung {
 
     private int menge;
     private double preis;
-
-    public TeilDerLieferung(Artikel artikel, Lieferung lieferung, int menge, double preis) {
-        this.artikel = artikel;
-        this.lieferung = lieferung;
-        this.menge = menge;
-        this.preis = preis;
-    }
 }

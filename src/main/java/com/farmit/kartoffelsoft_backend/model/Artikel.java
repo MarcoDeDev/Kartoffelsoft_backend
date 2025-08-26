@@ -37,30 +37,14 @@ public class Artikel {
 
     private int menge;
 
+    @Enumerated(EnumType.STRING)
     private WarenEinheit warenEinheit;
 
+    @Enumerated(EnumType.STRING)
     private WarenTyp warenTyp;
 
     private double preisProEinheit;
 
     private int verdorbene;
     private int rabat;
-
-    public Artikel(String name, Lieferant lieferant, int menge, WarenEinheit warenEinheit, WarenTyp warenTyp, double preisProEinheit, int verdorbene, int rabat) {
-        this.name = name;
-        this.lieferant = lieferant;
-        this.menge = menge;
-        this.warenEinheit = warenEinheit;
-        this.warenTyp = warenTyp;
-        this.preisProEinheit = preisProEinheit;
-        this.verdorbene = verdorbene;
-        this.rabat = rabat;
-    }
-
-    public Artikel(String name, WarenEinheit warenEinheit, WarenTyp warenTyp, double preisProEinheit) {
-        this.name = name;
-        this.warenEinheit = warenEinheit;
-        this.warenTyp = warenTyp;
-        this.preisProEinheit = preisProEinheit;
-    }
 }

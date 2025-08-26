@@ -35,4 +35,9 @@ public class AbteilungServiceImpl implements AbteilungService{
     public void deleteAbteilungById(long id) {
         abteilungRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Abteilung> findByAbteilungName(String name) {
+        return abteilungRepository.findByAbteilungName(name);
+    }
 }
