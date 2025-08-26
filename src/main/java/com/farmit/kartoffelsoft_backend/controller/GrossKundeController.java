@@ -27,7 +27,7 @@ public class GrossKundeController {
     }
 
     @GetMapping ("/{id}")
-    public GrossKunde getAllGrossKunde(@PathVariable("id") long id){
+    public GrossKunde getGrossKundeById(@PathVariable("id") long id){
         return grossKundeService.getGrossKundeById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Groß Kunde not found"));
     }

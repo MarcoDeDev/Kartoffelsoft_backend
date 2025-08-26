@@ -20,7 +20,7 @@ public class MitarbeiterServiceImpl implements MitarbeiterService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Override
+
     private Mitarbeiter save(Mitarbeiter mitarbeiter) {
         // Hache das Passwort, bevor es gespeichert wird
         mitarbeiter.setPassword(passwordEncoder.encode(mitarbeiter.getPassword()));

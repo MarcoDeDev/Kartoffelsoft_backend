@@ -27,7 +27,7 @@ public class BestellungController {
     }
 
     @GetMapping ("/{id}")
-    public Bestellung getAllBestellung(@PathVariable("id") long id){
+    public Bestellung getBestellungById(@PathVariable("id") long id){
         return bestellungService.getBestellungById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Bestellung not found"));
     }

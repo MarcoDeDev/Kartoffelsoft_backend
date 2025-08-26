@@ -27,7 +27,7 @@ public class LieferantController {
     }
 
     @GetMapping ("/{id}")
-    public Lieferant getAllLieferant(@PathVariable("id") long id){
+    public Lieferant getLieferantById(@PathVariable("id") long id){
         return lieferantService.getLieferantById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Lieferant not found"));
     }

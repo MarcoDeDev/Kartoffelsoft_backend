@@ -27,7 +27,7 @@ public class TeilDerBestellungController {
     }
 
     @GetMapping ("/{id}")
-    public TeilDerBestellung getAllTeilDerBestellung(@PathVariable("id") long id){
+    public TeilDerBestellung getTeilDerBestellungById(@PathVariable("id") long id){
         return teilDerBestellungService.getTeilDerBestellungById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Teil der Bestellung not found"));
     }

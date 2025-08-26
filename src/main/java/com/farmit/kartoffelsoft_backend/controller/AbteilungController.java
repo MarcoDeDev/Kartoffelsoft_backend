@@ -29,7 +29,7 @@ public class AbteilungController {
     }
 
     @GetMapping ("/{id}")
-    public Abteilung getAllAbteilung(@PathVariable("id") long id){
+    public Abteilung getAbteilungById(@PathVariable("id") long id){
         return abteilungService.getAbteilungById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Abteilung not found"));
     }

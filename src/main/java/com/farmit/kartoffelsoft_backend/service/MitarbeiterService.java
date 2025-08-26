@@ -8,8 +8,6 @@ import java.util.Optional;
 
 public interface MitarbeiterService {
 
-    Mitarbeiter save(Mitarbeiter mitarbeiter);
-
     Optional<Mitarbeiter> getMitarbeiterById(long id);
 
     List<Mitarbeiter> getAllMitarbeiter();

@@ -28,7 +28,7 @@ public class TeilDerLieferungController {
     }
 
     @GetMapping ("/{id}")
-    public TeilDerLieferung getAllTeilDerLieferung(@PathVariable("id") long id){
+    public TeilDerLieferung getTeilDerLieferungById(@PathVariable("id") long id){
         return teilDerLieferungService.getTeilDerLieferungById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Teil der Lieferung not found"));
     }

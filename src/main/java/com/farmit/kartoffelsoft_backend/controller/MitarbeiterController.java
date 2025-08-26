@@ -33,7 +33,7 @@ public class MitarbeiterController {
     }
 
     @GetMapping ("/{id}")
-    public Mitarbeiter getAllMitarbeiter(@PathVariable("id") long id){
+    public Mitarbeiter getMitarbeiterById(@PathVariable("id") long id){
         return mitarbeiterService.getMitarbeiterById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Mitarbeiter not found"));
     }

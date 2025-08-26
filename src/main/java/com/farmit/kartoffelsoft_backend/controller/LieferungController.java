@@ -27,7 +27,7 @@ public class LieferungController {
     }
 
     @GetMapping ("/{id}")
-    public Lieferung getAllLieferung(@PathVariable("id") long id){
+    public Lieferung getLieferungById(@PathVariable("id") long id){
         return lieferungService.getLieferungById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Lieferung not found"));
     }

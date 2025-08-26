@@ -27,7 +27,7 @@ public class ArtikelController {
     }
 
     @GetMapping ("/{id}")
-    public Artikel getAllArtikel(@PathVariable("id") long id){
+    public Artikel getArtikelById(@PathVariable("id") long id){
         return artikelService.getArtikelById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Artikel not found"));
     }
