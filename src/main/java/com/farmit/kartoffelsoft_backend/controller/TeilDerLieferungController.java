@@ -21,7 +21,7 @@ public class TeilDerLieferungController {
     }
 
     // Standard Methode
-    // localhost:8080/api/TeilDerLieferung
+    // localhost:8080/api/teilderlieferung
     @GetMapping
     public List<TeilDerLieferung> getAllTeilDerLieferung(){
         return teilDerLieferungService.getAllTeilDerLieferung();
