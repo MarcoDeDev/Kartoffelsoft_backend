@@ -23,7 +23,6 @@ public class Mitarbeiter {
 
     @ManyToOne // Viele Mitarbeiter können einer Abteilung gehören
     @JoinColumn(name = "abteilungId", nullable = false) // Fremdschlüssel Spalte
-    @JsonProperty("abteilungId") // um dem Frontend den richtigen Schlüssel zu kommunizieren
     private Abteilung abteilung;
 
     private String username;
@@ -31,4 +30,10 @@ public class Mitarbeiter {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    // abteilungId im JSON zu rendern
+    @JsonProperty("abteilungId")
+    public long getAbteilungId() {
+        return this.abteilung != null ? this.abteilung.getId() : null;
+    }
 }

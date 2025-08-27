@@ -6,7 +6,10 @@ import com.farmit.kartoffelsoft_backend.model.Mitarbeiter;
 import com.farmit.kartoffelsoft_backend.service.MitarbeiterService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -18,11 +21,11 @@ import java.util.Optional;
 public class MitarbeiterController {
     
     public final MitarbeiterService mitarbeiterService;
-    public BCryptPasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
 
-    public MitarbeiterController(MitarbeiterService mitarbeiterService, BCryptPasswordEncoder passwordEncoder) {
+    public MitarbeiterController(MitarbeiterService mitarbeiterService, AuthenticationManager authenticationManager) {
         this.mitarbeiterService = mitarbeiterService;
-        this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
     }
 
     // Standard Methode
@@ -49,18 +52,29 @@ public class MitarbeiterController {
         mitarbeiterService.deleteMitarbeiterById(id);
     }
 
-    @PostMapping ("/login")
-    public ResponseEntity<Mitarbeiter> login(@RequestBody LoginRequest loginRequest){
+    @PostMapping("/login")
+    public ResponseEntity<Mitarbeiter> login(@RequestBody LoginRequest loginRequest) {
+        try {
+            System.out.println("LoginRequest Username: " + loginRequest.getUsername());
+            System.out.println("LoginRequest Password: " + loginRequest.getPassword());
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            loginRequest.getUsername(),
+                            loginRequest.getPassword()
+                    )
+            );
 
-        Optional<Mitarbeiter> optionalMitarbeiter = mitarbeiterService.findByUsername(loginRequest.getUsername());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        if (optionalMitarbeiter.isPresent()) {
-            Mitarbeiter mitarbeiter = optionalMitarbeiter.get();
-            if (passwordEncoder.matches(loginRequest.getPassword(), mitarbeiter.getPassword())) {
-                return ResponseEntity.ok(mitarbeiter);
-            }
+            // Nach erfolgreicher Authentifizierung ist der Benutzer im "authentication"-Objekt verfügbar.
+            // Wir können den Benutzernamen aus dem principal des authentifizierten Objekts ziehen
+            // und den Mitarbeiter aus dem Service abfragen, um das vollständige Objekt zurückzugeben.
+            Mitarbeiter mitarbeiter = mitarbeiterService.findByUsername(loginRequest.getUsername())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Mitarbeiter not found after authentication"));
+
+            return ResponseEntity.ok(mitarbeiter);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
-    
 }

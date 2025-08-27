@@ -32,7 +32,7 @@ public class DataLoader {
                 admin.setVorname("Admin");
                 admin.setNachname("User");
                 admin.setUsername("admin");
-                admin.setPassword(passwordEncoder.encode("admin123")); // Password gehasht
+                admin.setPassword(passwordEncoder.encode("admin123")); // Password hashen
                 admin.setRole(Role.ADMIN);
                 admin.setAbteilung(adminAbteilung); // Setze die Admin-Abteilung hier
                 mitarbeiterRepository.save(admin);
