@@ -32,7 +32,7 @@ public class GrossKundeController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Groß Kunde not found"));
     }
 
-    @PostMapping
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED) // 201 No Content ist Standard für erfolgreiches Created
     public GrossKunde save(@RequestBody GrossKunde grossKunde) {
         return grossKundeService.save(grossKunde);
@@ -42,5 +42,4 @@ public class GrossKundeController {
     public void deleteGrossKundeById(@PathVariable("id") long id) {
         grossKundeService.deleteGrossKundeById(id);
     }
-
 }
