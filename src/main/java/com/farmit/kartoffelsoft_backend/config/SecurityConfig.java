@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Data // Lombok-Annotation: erzeugt automatisch Getter, Setter, toString, equals, hashCode und RequiredArgsConstructo
 @Configuration
@@ -60,7 +61,10 @@ public class SecurityConfig {
 
                         .requestMatchers("/h2-console/**").permitAll()  // Erlaubt den Zugriff auf die H2-Konsole
                         .requestMatchers("/api/mitarbeiter/login").permitAll() // Erlaubt den Zugriff auf Ihren eigenen Login-Endpunkt
-                        .requestMatchers("/api/mitarbeiter/register").permitAll() // Erlaubt die Registrierung
+                        .requestMatchers("/api/mitarbeiter/register").permitAll() // Erlaubt die Registrierung der Mitarbeiter
+                        .requestMatchers("/api/mitarbeiter").permitAll()
+                        .requestMatchers("/api/abteilung/register").permitAll()
+                        .requestMatchers("/api/abteilung").permitAll()
                         .anyRequest().authenticated()
                 )
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))

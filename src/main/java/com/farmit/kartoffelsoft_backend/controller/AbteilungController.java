@@ -34,7 +34,7 @@ public class AbteilungController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Abteilung not found"));
     }
 
-    @PostMapping
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED) // 201 No Content ist Standard für erfolgreiches Created
     public Abteilung save(@RequestBody Abteilung abteilung) {
         return abteilungService.save(abteilung);
@@ -44,7 +44,4 @@ public class AbteilungController {
     public void deleteAbteilungById(@PathVariable("id") long id) {
         abteilungService.deleteAbteilungById(id);
     }
-
-
-
 }
