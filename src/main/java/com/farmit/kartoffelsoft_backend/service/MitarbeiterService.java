@@ -1,5 +1,6 @@
 package com.farmit.kartoffelsoft_backend.service;
 
+import com.farmit.kartoffelsoft_backend.dto.RegistrationRequest;
 import com.farmit.kartoffelsoft_backend.exception.UsernameAlreadyExistsException;
 import com.farmit.kartoffelsoft_backend.model.Mitarbeiter;
 
@@ -16,5 +17,5 @@ public interface MitarbeiterService {
 
     Optional<Mitarbeiter> findByUsername(String username);
 
-    Mitarbeiter register(Mitarbeiter mitarbeiter);
+    Mitarbeiter register(RegistrationRequest registrationRequest);
 }
