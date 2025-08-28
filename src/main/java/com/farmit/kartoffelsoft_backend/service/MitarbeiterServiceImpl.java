@@ -1,6 +1,6 @@
 package com.farmit.kartoffelsoft_backend.service;
 
-import com.farmit.kartoffelsoft_backend.dto.RegistrationRequest;
+import com.farmit.kartoffelsoft_backend.dto.MitarbeiterRegistrationRequest;
 import com.farmit.kartoffelsoft_backend.exception.AbteilungNichtGefunden;
 import com.farmit.kartoffelsoft_backend.exception.UsernameAlreadyExistsException;
 import com.farmit.kartoffelsoft_backend.model.Abteilung;
@@ -54,23 +54,23 @@ public class MitarbeiterServiceImpl implements MitarbeiterService {
     }
 
     @Override
-    public Mitarbeiter register(RegistrationRequest registrationRequest) {
+    public Mitarbeiter register(MitarbeiterRegistrationRequest mitarbeiterRegistrationRequest) {
         // Überprüfe, ob der Benutzername bereits existiert
-        if(mitarbeiterRepository.findByUsername(registrationRequest.getUsername()).isPresent()) {
-          throw new UsernameAlreadyExistsException("Der Benutzername " + registrationRequest.getUsername() + " ist bereits vergeben.");
+        if(mitarbeiterRepository.findByUsername(mitarbeiterRegistrationRequest.getUsername()).isPresent()) {
+          throw new UsernameAlreadyExistsException("Der Benutzername " + mitarbeiterRegistrationRequest.getUsername() + " ist bereits vergeben.");
         }
 
         // Finde die Abteilung anhand der ID
-        Abteilung abteilung = abteilungRepository.findById(registrationRequest.getAbteilungId())
-                .orElseThrow(() -> new AbteilungNichtGefunden("Abteilung mit der ID " + registrationRequest.getAbteilungId() + " nicht gefunden."));
+        Abteilung abteilung = abteilungRepository.findById(mitarbeiterRegistrationRequest.getAbteilungId())
+                .orElseThrow(() -> new AbteilungNichtGefunden("Abteilung mit der ID " + mitarbeiterRegistrationRequest.getAbteilungId() + " nicht gefunden."));
 
         // Erstelle den neuen Mitarbeiter aus dem DTO
         Mitarbeiter neuerMitarbeiter = new Mitarbeiter();
-        neuerMitarbeiter.setVorname(registrationRequest.getVorname());
-        neuerMitarbeiter.setNachname(registrationRequest.getNachname());
-        neuerMitarbeiter.setUsername(registrationRequest.getUsername());
-        neuerMitarbeiter.setPassword(registrationRequest.getPassword()); // Das Passwort wird in save() gehasht
-        neuerMitarbeiter.setRole(registrationRequest.getRole());
+        neuerMitarbeiter.setVorname(mitarbeiterRegistrationRequest.getVorname());
+        neuerMitarbeiter.setNachname(mitarbeiterRegistrationRequest.getNachname());
+        neuerMitarbeiter.setUsername(mitarbeiterRegistrationRequest.getUsername());
+        neuerMitarbeiter.setPassword(mitarbeiterRegistrationRequest.getPassword()); // Das Passwort wird in save() gehasht
+        neuerMitarbeiter.setRole(mitarbeiterRegistrationRequest.getRole());
         neuerMitarbeiter.setAbteilung(abteilung);
 
         return save(neuerMitarbeiter);

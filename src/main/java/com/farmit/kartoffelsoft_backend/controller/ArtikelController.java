@@ -1,5 +1,7 @@
 package com.farmit.kartoffelsoft_backend.controller;
 
+import com.farmit.kartoffelsoft_backend.dto.ArtikelRegistrationRequest;
+import com.farmit.kartoffelsoft_backend.dto.MitarbeiterRegistrationRequest;
 import com.farmit.kartoffelsoft_backend.model.Artikel;
 import com.farmit.kartoffelsoft_backend.service.ArtikelService;
 import org.springframework.http.HttpStatus;
@@ -32,10 +34,10 @@ public class ArtikelController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Artikel not found"));
     }
 
-    @PostMapping
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED) // 201 No Content ist Standard für erfolgreiches Created
-    public Artikel save(@RequestBody Artikel artikel) {
-        return artikelService.save(artikel);
+    public Artikel save(@RequestBody ArtikelRegistrationRequest artikelRegistrationRequest) {
+        return artikelService.save(artikelRegistrationRequest);
     }
 
     @DeleteMapping ("/{id}")

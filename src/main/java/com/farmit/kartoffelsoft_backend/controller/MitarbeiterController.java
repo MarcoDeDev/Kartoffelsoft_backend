@@ -2,7 +2,7 @@ package com.farmit.kartoffelsoft_backend.controller;
 
 
 import com.farmit.kartoffelsoft_backend.dto.LoginRequest;
-import com.farmit.kartoffelsoft_backend.dto.RegistrationRequest;
+import com.farmit.kartoffelsoft_backend.dto.MitarbeiterRegistrationRequest;
 import com.farmit.kartoffelsoft_backend.model.Mitarbeiter;
 import com.farmit.kartoffelsoft_backend.service.MitarbeiterService;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/mitarbeiter")
@@ -44,8 +43,8 @@ public class MitarbeiterController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED) // 201 No Content ist Standard für erfolgreiches Created
-    public Mitarbeiter register(@RequestBody RegistrationRequest registrationRequest) {
-        return mitarbeiterService.register(registrationRequest);
+    public Mitarbeiter register(@RequestBody MitarbeiterRegistrationRequest mitarbeiterRegistrationRequest) {
+        return mitarbeiterService.register(mitarbeiterRegistrationRequest);
     }
 
     @DeleteMapping ("/{id}")
