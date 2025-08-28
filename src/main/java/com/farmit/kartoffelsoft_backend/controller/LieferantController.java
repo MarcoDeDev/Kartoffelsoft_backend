@@ -32,7 +32,7 @@ public class LieferantController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Lieferant not found"));
     }
 
-    @PostMapping
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED) // 201 No Content ist Standard für erfolgreiches Created
     public Lieferant save(@RequestBody Lieferant lieferant) {
         return lieferantService.save(lieferant);
